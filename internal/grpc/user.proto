@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "./.gen";
+
+
+message User {
+    int64 id = 1;
+    string fname = 2;
+    string city = 3;
+    int64 phone = 4;
+    double height = 5;
+    bool married = 6;
+}
+
+service UserService {
+    rpc GetUserById (UserRequest) returns (User);
+    rpc GetUsersByIds (UsersRequest) returns (stream User);
+}
+
+
+
+message UserRequest {
+    int64 id = 1;
+}
+
+message UsersRequest {
+    repeated int64 ids = 1;
+}
